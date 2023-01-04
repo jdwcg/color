@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>TEST</title>
+      <link rel="stylesheet" href="./style.css" />
+   </head>
+   <body>
+      <div class="app-styleguide">
+         <div><button class="btn-primary"></button> <span>#605FFF</span></div>
+      </div>
+
+      <div>
+         <button class="green">Choose Green Theme</button>
+         <button class="red">Choose Red Theme</button>
+         <button class="blue">Choose Blue Theme</button>
+      </div>
+
+      <input type="color" name="" id="color_picker" />
+      <span href="" id="hex_code">#000000</span>
+
+      <script>
+         function setTheme(name) {
+            document.querySelector(`.${name}`).onclick = () => {
+               const root = document.documentElement
+               root.style.setProperty("--primary-color", `var(--${name}-color-10)`)
+               root.style.setProperty("--primary-hover-color", `var(--${name}-color)`)
+               root.style.setProperty("--primary-border-color", `var(--${name}-color)`)
+            }
+         }
+
+         setTheme("green")
+         setTheme("red")
+         setTheme("blue")
+
+         let color_picker = document.getElementById("color_picker")
+         let hex_code = document.getElementById("hex_code")
+
+         color_picker.addEventListener(
+            "input",
+            function () {
+               let code = color_picker.value
+               hex_code.textContent = code
+               hex_code.setAttribute("href", code)
+            },
+            false
+         )
+      </script>
+   </body>
+</html>
